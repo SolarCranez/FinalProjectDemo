@@ -8,6 +8,9 @@ namespace ActiveRagdoll {
     // Author: Sergio Abreu García | https://sergioabreu.me
 
     public class CameraModule : Module {
+
+        public GameObject playerListener;
+
         [Header("--- GENERAL ---")]
         [Tooltip("Where the camera should point to. Head by default.")]
         public Transform _lookPoint;
@@ -69,11 +72,17 @@ namespace ActiveRagdoll {
 
             _startDirection = _lookPoint.forward;
         }
+        private void UpdateListenerPos()
+        {
+            playerListener.transform.position = Camera.transform.position;
+            playerListener.transform.rotation = Camera.transform.rotation;
+        }
 
         void Update() {
             UpdateCameraInput();
             UpdateCameraPosRot();
             AvoidObstacles();
+            UpdateListenerPos();
         }
 
         private void UpdateCameraInput() {

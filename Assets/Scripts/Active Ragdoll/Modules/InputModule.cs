@@ -13,9 +13,32 @@ namespace ActiveRagdoll {
 
         public delegate void onMoveDelegate(Vector2 movement);
         public onMoveDelegate OnMoveDelegates { get; set; }
-        public void OnMove(InputValue value) {
+        public void OnMove(InputValue value)
+        {
             OnMoveDelegates?.Invoke(value.Get<Vector2>());
         }
+
+        public Rigidbody playerRb;
+        public float jumpForce;
+        public float speed = 5.0f;
+        public void Jump()
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && _isOnFloor==true)
+            {
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                //isOnGround = false;
+                Debug.Log("spacebar pressed!");
+                //playerAnim.SetTrigger("Jump_trig");
+                //playerAudio.PlayOneShot(jumpSound, 1.0f);
+                //dirtParticle.Stop();
+            }
+        }
+
+        //public void Move()
+        //{
+        //    float forwardInput = Input.GetAxis("Vertical");
+        //    playerRb.AddForce(transform.forward * speed * forwardInput);
+        //}
 
         public delegate void onLeftArmDelegate(float armWeight);
         public onLeftArmDelegate OnLeftArmDelegates { get; set; }
@@ -48,6 +71,8 @@ namespace ActiveRagdoll {
 
         void Update() {
             UpdateOnFloor();
+            Jump();
+            //Move();
         }
 
         public delegate void onFloorChangedDelegate(bool onFloor);

@@ -11,6 +11,7 @@ namespace ActiveRagdoll {
 
     [RequireComponent(typeof(InputModule))]
     public class ActiveRagdoll : MonoBehaviour {
+
         [Header("--- GENERAL ---")]
         [SerializeField] private int _solverIterations = 12;
         [SerializeField] private int _velSolverIterations = 4;
