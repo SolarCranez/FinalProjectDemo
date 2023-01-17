@@ -27,7 +27,6 @@ namespace ActiveRagdoll {
             {
                 playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
                 //isOnGround = false;
-                Debug.Log("spacebar pressed!");
                 //playerAnim.SetTrigger("Jump_trig");
                 //playerAudio.PlayOneShot(jumpSound, 1.0f);
                 //dirtParticle.Stop();

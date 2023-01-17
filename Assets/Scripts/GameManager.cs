@@ -12,11 +12,19 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    public void LoadNextLevel()
+
+    IEnumerator LoadNextLevel()
     {
         currentLevel++;
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(currentLevel);
     }
+
+    public void ActivateLevel()
+    {
+        StartCoroutine(LoadNextLevel());
+    }
+
     // Update is called once per frame
     void Update()
     {
